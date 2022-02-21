@@ -15,3 +15,6 @@ cd ..
 cmake -S . -B ./$BUILD_FOLDER/ -G Ninja -DCONAN_TOOLCHAIN_FOLDER:STRING=$BUILD_FOLDER
 #cmake -S . -B ./$BUILD_FOLDER/ -DCONAN_TOOLCHAIN_FOLDER:STRING=$BUILD_FOLDER
 cmake --build ./$BUILD_FOLDER
+
+rm -r .vscode
+cp -r vscode_template .vscode

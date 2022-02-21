@@ -14,7 +14,7 @@ def run(cmd, echo=True, shell=True, printOutput = True) -> str:
 
 targets=(
     ("ConanWrapper.cmake", "# "),
-    ("build.bat", "rem "),
+    ("build.bat", "@rem "),
     ("build.sh", "# ")
 )
 
