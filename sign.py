@@ -1,3 +1,6 @@
+""" 
+    Adds a comment with the last commit of this repository to all the scripts
+"""
 from subprocess import check_output
 
 def run(cmd, echo=True, shell=True, printOutput = True) -> str:
@@ -15,7 +18,8 @@ def run(cmd, echo=True, shell=True, printOutput = True) -> str:
 targets=(
     ("ConanWrapper.cmake", "# "),
     ("build.bat", "@rem "),
-    ("build.sh", "# ")
+    ("build.sh", "# "),
+    ("fix_vscode_paths.py" , "# ")
 )
 
 

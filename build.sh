@@ -1,4 +1,3 @@
-TOOLCHAIN="put here a vcpkg toolchain, if you need it"
 BUILD_FOLDER="build_posix"
 
 export CONAN_REVISIONS_ENABLED=1
@@ -13,8 +12,9 @@ conan install .. --build=missing
 cd ..
 
 cmake -S . -B ./$BUILD_FOLDER/ -G Ninja -DCONAN_TOOLCHAIN_FOLDER:STRING=$BUILD_FOLDER
+# you can use a standard makefile if you don't like Ninja ( but you will have to fix the tasks.json yourself )
 #cmake -S . -B ./$BUILD_FOLDER/ -DCONAN_TOOLCHAIN_FOLDER:STRING=$BUILD_FOLDER
 cmake --build ./$BUILD_FOLDER
 
-rm -r .vscode
 cp -r vscode_template .vscode
+python fix_vscode_paths.py ./$BUILD_FOLDER/ ./.vscode
