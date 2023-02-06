@@ -17,6 +17,13 @@ MESSAGE( STATUS "Looking for Conan in ${conanFolder}")
 
 set(conanToolchain "${conanFolder}/${CONAN_TOOLCHAIN_FOLDER}/conanbuildinfo.cmake")
 set(conanPaths "${conanFolder}/${CONAN_TOOLCHAIN_FOLDER}/conan_paths.cmake")
+
+if(NOT EXISTS "${conanToolchain}") #this is most likely vscode running cmake
+	MESSAGE(STATUS "${conanToolchain} is not valid, let's try ${VSCODE_CONAN_TOOLCHAIN}")
+	set(conanToolchain "${VSCODE_CONAN_TOOLCHAIN}/conanbuildinfo.cmake")
+endif()
+
+
 if(EXISTS "${conanToolchain}")
 	MESSAGE( STATUS "Using Conan as dependency manager")
 	include(${conanToolchain})
