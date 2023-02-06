@@ -5,6 +5,16 @@ import pathlib
 import sys
 import os
 import json
+import traceback
+
+def list_get_uniq(l: list) -> list:
+    seen = set()
+    outlist=[]
+    for x in l:
+        if x not in seen:
+            seen.add(x)
+            outlist.append(x)
+    return outlist
 
 def collect(filename: str) -> list:
     collecting=False
@@ -38,7 +48,7 @@ try:
     print("Reading conan configurations from", fullpath)
 
     items=collect(fullpath)
-    print(items)
+    print("Conan includes are in:\n",json.dumps(items, indent=1),"\n")
 
 except Exception as e:
     print("Unable to read the conan configuration. Did the build process work?")
@@ -48,6 +58,7 @@ except Exception as e:
 try:
     fullpath=os.path.join(basedir, vscode_folder, "c_cpp_properties.json")
     print("Adding the include folders to", fullpath)
+    conan_env=[{'VSCODE_CONAN_TOOLCHAIN_FOLDER' : os.path.abspath("./build_posix/")}]
 
     data={}
     with open(fullpath, 'r') as f:
@@ -56,9 +67,16 @@ try:
     for conf in data['configurations']:
         for i in items:
             conf['includePath'].append(i+"/**")
+        conf['includePath']=list_get_uniq(conf['includePath'])
+        conf['environments'] = conan_env
+
+
+    data['environments'] = conan_env
+    print(json.dumps(conan_env, indent=1))
+
 
     s=json.dumps(data, indent=1)
-    print(s)
+    #print(s)
 
     with open(fullpath, 'w') as f:
         f.write(s)
@@ -66,4 +84,5 @@ try:
 except Exception as e:
     print("Unable to write the vscode configuration. Did the build process work?")
     print(e)
+    print(traceback.format_exc())
     exit(-1)
