@@ -19,8 +19,15 @@ set(conanToolchain "${conanFolder}/${CONAN_TOOLCHAIN_FOLDER}/conanbuildinfo.cmak
 set(conanPaths "${conanFolder}/${CONAN_TOOLCHAIN_FOLDER}/conan_paths.cmake")
 
 if(NOT EXISTS "${conanToolchain}") #this is most likely vscode running cmake
-	MESSAGE(STATUS "${conanToolchain} is not valid, let's try ${VSCODE_CONAN_TOOLCHAIN}")
-	set(conanToolchain "${VSCODE_CONAN_TOOLCHAIN}/conanbuildinfo.cmake")
+	MESSAGE(STATUS "${conanToolchain} is not valid, I'll try figure out where it is")
+	
+	if(EXISTS "${VSCODE_CONAN_TOOLCHAIN}/conanbuildinfo.cmake") 
+		MESSAGE(STATUS "Let's try ${VSCODE_CONAN_TOOLCHAIN}")
+		set(conanToolchain "${VSCODE_CONAN_TOOLCHAIN}/conanbuildinfo.cmake")
+	elseif(EXISTS "${CONAN_TOOLCHAIN_FILE}") 
+		MESSAGE(STATUS "${conanToolchain} is not valid, let's try ${CONAN_TOOLCHAIN_FILE}")
+		set(conanToolchain "${CONAN_TOOLCHAIN_FILE}")
+	endif()
 endif()
 
 

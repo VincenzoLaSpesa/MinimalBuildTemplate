@@ -2,6 +2,9 @@
 	fmt/8.1.1
 
 [generators]
-	cmake
-	cmake_find_package
+	CMakeToolchain
+	CMakeDeps
+# old conan1 generators
+#	cmake
+#	cmake_find_package
 #	cmake_paths

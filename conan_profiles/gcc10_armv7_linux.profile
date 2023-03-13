@@ -1,13 +1,7 @@
 [settings]
     os=Linux
-    os_build=Linux
-    arch=x86_64
-    arch_build=x86_64
+    arch=armv7
     compiler=gcc
     compiler.version=10
     compiler.libcxx=libstdc++
     build_type=Release
-[options]
-[conf]
-[build_requires]
-[env]
