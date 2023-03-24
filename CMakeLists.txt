@@ -14,8 +14,8 @@ endif()
 if(EXISTS "ConanWrapper.cmake")
 	include("ConanWrapper.cmake")
 elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ConanWrapper.cmake")
-	# vscode will try to run cmake again, and it will fuck the paths if i don't trick him
-	# if it's still fucked you can still build from Ninja, but the debugger will not work out of the box
+	# vscode will try to run cmake again, and it will break the paths if i don't trick him
+	# 	(you can always build from Ninja, but the debugger will not work out of the box)
 	MESSAGE( STATUS "--> Loading the conan wrapper from ${CMAKE_CURRENT_SOURCE_DIR}/ConanWrapper.cmake")
 	MESSAGE( STATUS "--> Running from Visual Studio Code?")
 	set(VSCODE_CONAN_TOOLCHAIN "${CMAKE_CURRENT_SOURCE_DIR}/build_posix/")
