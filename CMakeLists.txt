@@ -1,4 +1,5 @@
-cmake_minimum_required (VERSION 3.12)
+cmake_minimum_required (VERSION 3.20)
+#set(CMAKE_FIND_DEBUG_MODE 1)
 
 project(minimal_build_template VERSION 3 LANGUAGES C CXX)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")

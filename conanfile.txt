@@ -1,5 +1,8 @@
 [requires]
-	fmt/8.1.1
+	fmt/9.1.0
+
+[options]
+	fmt/*:header_only=True # new conan2 syntax
 
 [generators]
 	CMakeToolchain
