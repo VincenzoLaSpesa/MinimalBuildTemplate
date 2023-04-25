@@ -1,7 +1,11 @@
 [requires]
 	fmt/9.1.0
 
+[options]
+	fmt/*:header_only=True # new conan2 syntax
+
 [generators]
-	cmake
-	cmake_find_package
-#	cmake_paths
+	MesonToolchain
+	PkgConfigDeps
+	CMakeDeps
+	CMakeToolchain	

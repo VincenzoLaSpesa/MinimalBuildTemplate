@@ -1,5 +1,6 @@
-#include <fmt/color.h>
+#include <fmt/printf.h>
 #include <fmt/chrono.h>
+#include <fmt/color.h>
 
 int main() {
     using namespace std::literals::chrono_literals;

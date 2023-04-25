@@ -1,4 +1,5 @@
-cmake_minimum_required (VERSION 3.12)
+cmake_minimum_required (VERSION 3.20)
+#set(CMAKE_FIND_DEBUG_MODE 1)
 
 project(minimal_build_template VERSION 3 LANGUAGES C CXX)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
@@ -9,19 +10,6 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 	MESSAGE(STATUS "No toolchain is defined")
 else()
 	MESSAGE(STATUS "Using toolchain in ${CMAKE_TOOLCHAIN_FILE}")
-endif()
-
-if(EXISTS "ConanWrapper.cmake")
-	include("ConanWrapper.cmake")
-elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ConanWrapper.cmake")
-	# vscode will try to run cmake again, and it will break the paths if i don't trick him
-	# 	(you can always build from Ninja, but the debugger will not work out of the box)
-	MESSAGE( STATUS "--> Loading the conan wrapper from ${CMAKE_CURRENT_SOURCE_DIR}/ConanWrapper.cmake")
-	MESSAGE( STATUS "--> Running from Visual Studio Code?")
-	set(VSCODE_CONAN_TOOLCHAIN "${CMAKE_CURRENT_SOURCE_DIR}/build_posix/")
-	include("${CMAKE_CURRENT_SOURCE_DIR}/ConanWrapper.cmake")
-else()
-	MESSAGE( STATUS "Conan is not used, there is no ConanWrapper.cmake here")
 endif()
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
