@@ -5,9 +5,7 @@
 	fmt/*:header_only=True # new conan2 syntax
 
 [generators]
-	CMakeToolchain
+	MesonToolchain
+	PkgConfigDeps
 	CMakeDeps
-# old conan1 generators
-#	cmake
-#	cmake_find_package
-#	cmake_paths
+	CMakeToolchain	
