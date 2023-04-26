@@ -21,17 +21,17 @@ targets=[
     ("fix_vscode_paths.py" , "# ")
 ]
 
-for path in  glob.glob('/*.sh'):
+for path in  glob.glob('*.sh'):
     targets.append([path, "# "])
 
-for path in  glob.glob('/*.bat'):
+for path in  glob.glob('*.bat'):
     targets.append([path, "@rem "])
 
-for path in  glob.glob('/*.ps1'):
+for path in  glob.glob('*.ps1'):
     targets.append([path, "# "])
 
 
-commit_id=run("git log --format='%cd %H' -n 1", echo=False,printOutput=False)
+commit_id=run("git log --format=\"\%cd %H\" -n 1", echo=False,printOutput=False)
 remote=run("git remote -v", echo=False,printOutput=False).split()[1]
 signature=f"Based on {remote} {commit_id}"
 print(signature)
