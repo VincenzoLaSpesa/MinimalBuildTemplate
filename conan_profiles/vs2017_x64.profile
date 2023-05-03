@@ -1,12 +1,9 @@
 [settings]
-	os=Windows
-	os_build=Windows
 	arch=x86_64
-	arch_build=x86_64
-	compiler=Visual Studio
-	compiler.version=15
 	build_type=Release
-[options]
-[conf]
-[build_requires]
-[env]
+	compiler=msvc
+	compiler.cppstd=14
+	compiler.runtime=dynamic
+	compiler.runtime_type=Release
+	compiler.version=191
+	os=Windows
